@@ -1,0 +1,86 @@
+openapi: 3.0.1
+info:
+  title: Calendar API
+  description: API для работы с календарем праздников и рабочих дней
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:9090
+    description: Local server
+
+paths:
+  /days:
+    get:
+      tags:
+        - Calendar
+      summary: Получить информацию о днях в указанном периоде
+      description: Возвращает разделение дней на праздники, выходные и рабочие дни
+      parameters:
+        - name: startDate
+          in: query
+          description: Дата начала периода в формате dd.MM.yyyy
+          required: true
+          schema:
+            type: string
+            format: date
+            example: "01.01.2025"
+        - name: endDate
+          in: query
+          description: Дата окончания периода в формате dd.MM.yyyy
+          required: true
+          schema:
+            type: string
+            format: date
+            example: "31.01.2025"
+      responses:
+        '202':
+          description: Успешный запрос
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CalendarOutDto'
+        '400':
+          description: Неверные параметры запроса
+
+components:
+  schemas:
+    CalendarOutDto:
+      type: object
+      properties:
+        startDate:
+          type: string
+          format: date
+          description: Дата начала периода
+          example: "2025-01-01"
+        endDate:
+          type: string
+          format: date
+          description: Дата окончания периода
+          example: "2025-01-31"
+        holidays:
+          type: array
+          items:
+            type: string
+            format: date
+          description: Список праздничных дней
+          example: ["2025-01-01", "2025-01-02", "2025-01-03", "2025-01-06", "2025-01-07"]
+        nonWorkingDays:
+          type: array
+          items:
+            type: string
+            format: date
+          description: Список выходных дней (не праздников)
+          example: ["2025-01-04", "2025-01-05", "2025-01-11", "2025-01-12"]
+        workingDays:
+          type: array
+          items:
+            type: string
+            format: date
+          description: Список рабочих дней
+          example: ["2025-01-08", "2025-01-09", "2025-01-10", "2025-01-13", "2025-01-14"]
+      required:
+        - startDate
+        - endDate
+        - holidays
+        - nonWorkingDays
+        - workingDays

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ошибка расчета отпускных</title>
+    <link rel="icon" type="image/png" href="/favicon.ico"/>
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/error.css">
+</head>
+<body>
+<div class="app-container">
+    <header class="app-header">
+        <nav class="app-navbar">
+            <h1 class="app-title">Калькулятор отпускных</h1>
+        </nav>
+    </header>
+
+    <main class="app-main">
+        <div class="error-container">
+            <div class="error-header">
+                <span class="error-icon">😞</span>
+                <h2 class="error-title">Произошла ошибка</h2>
+            </div>
+
+            <div class="error-details">
+                <div class="error-property">
+                    <span class="error-property-label">Статус:</span>
+                    <span class="error-property-value" th:text="${error.status}"></span>
+                </div>
+                <div class="error-property">
+                    <span class="error-property-label">Время:</span>
+                    <span class="error-property-value" th:text="${#temporals.format(error.timestamp, 'dd.MM.yyyy HH:mm:ss')}"></span>
+                </div>
+                <div class="error-property">
+                    <span class="error-property-label">Причина:</span>
+                    <span class="error-property-value" th:text="${error.reason}"></span>
+                </div>
+                <div class="error-property">
+                    <span class="error-property-label">Сообщение:</span>
+                    <span class="error-property-value" th:text="${error.message}"></span>
+                </div>
+            </div>
+
+            <div class="error-actions">
+                <a href="/" class="btn">Вернуться на главную</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="app-footer">
+        <div class="footer-content">
+            <p>&copy; 2025 Калькулятор отпускных</p>
+        </div>
+    </footer>
+</div>
+</body>
+</html>

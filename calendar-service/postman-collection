@@ -1,0 +1,80 @@
+{
+	"info": {
+		"_postman_id": "41270302-d867-4b87-9399-201683b3d8aa",
+		"name": "Calendar API",
+		"description": "Collection for testing Calendar API endpoints",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26102268"
+	},
+	"item": [
+		{
+			"name": "Get Calendar Days",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/days?startDate=01.01.2025&endDate=10.01.2025",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"days"
+					],
+					"query": [
+						{
+							"key": "startDate",
+							"value": "01.01.2025"
+						},
+						{
+							"key": "endDate",
+							"value": "10.01.2025"
+						}
+					]
+				},
+				"description": "Get working days between two dates"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"exec": [
+					"console.log('Request being sent');"
+				],
+				"type": "text/javascript"
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"exec": [
+					"pm.test(\"Status code is 202\", function () {",
+					"    pm.response.to.have.status(202);",
+					"});",
+					"",
+					"pm.test(\"Response has required fields\", function () {",
+					"    const jsonData = pm.response.json();",
+					"    pm.expect(jsonData).to.have.property('startDate');",
+					"    pm.expect(jsonData).to.have.property('endDate');",
+					"    pm.expect(jsonData).to.have.property('holidays');",
+					"    pm.expect(jsonData).to.have.property('workingDays');",
+					"});"
+				],
+				"type": "text/javascript"
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:9090"
+		}
+	]
+}

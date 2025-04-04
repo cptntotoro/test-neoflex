@@ -1,0 +1,67 @@
+.error-container {
+    max-width: 600px;
+    width: 100%;
+    background-color: var(--surface-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-sm);
+    padding: 2rem;
+    margin: 2rem auto;
+    border-left: 4px solid var(--error-color);
+}
+
+.error-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    gap: 1rem;
+}
+
+.error-icon {
+    font-size: 2.5rem;
+    color: var(--error-color);
+}
+
+.error-title {
+    font-size: 1.5rem;
+    color: var(--error-color);
+    margin: 0;
+}
+
+.error-details {
+    margin-bottom: 1.5rem;
+}
+
+.error-property {
+    display: flex;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.error-property-label {
+    font-weight: 600;
+    min-width: 100px;
+    color: var(--text-secondary);
+}
+
+.error-property-value {
+    color: var(--text-primary);
+    word-break: break-word;
+    flex: 1;
+}
+
+.error-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+@media (max-width: 480px) {
+    .error-property {
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .error-property-label {
+        min-width: auto;
+    }
+}

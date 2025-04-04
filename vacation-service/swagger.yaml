@@ -1,0 +1,68 @@
+openapi: 3.0.1
+info:
+  title: Vacation Pay Calculator API
+  description: API для расчета отпускных выплат
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:8080
+    description: Local server
+
+paths:
+  /calculate:
+    get:
+      tags:
+        - Vacation
+      summary: Рассчитать сумму отпускных выплат
+      parameters:
+        - name: startDate
+          in: query
+          description: Дата начала отпуска в формате dd.MM.yyyy
+          required: true
+          schema:
+            type: string
+            format: date
+            example: "01.06.2025"
+        - name: endDate
+          in: query
+          description: Дата окончания отпуска в формате dd.MM.yyyy
+          required: true
+          schema:
+            type: string
+            format: date
+            example: "14.06.2025"
+        - name: avgAnnualSalary
+          in: query
+          description: Среднегодовая зарплата
+          required: true
+          schema:
+            type: number
+            format: double
+            example: 600000
+      responses:
+        '200':
+          description: Успешный расчет
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VacationResponseDto'
+        '400':
+          description: Неверные параметры запроса
+
+components:
+  schemas:
+    VacationResponseDto:
+      type: object
+      properties:
+        startDate:
+          type: string
+          format: date
+          description: Дата начала отпуска
+        endDate:
+          type: string
+          format: date
+          description: Дата окончания отпуска
+        amount:
+          type: number
+          format: double
+          description: Сумма отпускных после вычета НДФЛ
