@@ -1,3 +1,5 @@
+![Static Badge](https://img.shields.io/coveralls/github/badges/shields)
+
 # Приложение "Калькулятор отпускных"
 Java 11, Spring Boot, Maven, Docker, Thymeleaf, HTML, CSS, JavaScript
 
