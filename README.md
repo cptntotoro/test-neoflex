@@ -1,4 +1,4 @@
-![Static Badge](https://img.shields.io/coveralls/github/badges/shields) ![Visitor Badge](https://visitor-badge.laobi.icu/badge?page_id=cptntotoro.test-neoflex)
+![Visitor Badge](https://visitor-badge.laobi.icu/badge?page_id=cptntotoro.test-neoflex)
 
 # Приложение "Калькулятор отпускных"
 Java 11, Spring Boot, Maven, Docker, Thymeleaf, HTML, CSS, JavaScript
